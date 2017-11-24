@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.biville.florent:neo4j-sproc-compiler:1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.biville.florent/neo4j-sproc-compiler/1.2/33a6010ba51ee5ecfc978379a1afc90b6c170641/neo4j-sproc-compiler-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.biville.florent/neo4j-sproc-compiler/1.2/8d944e129b1b7bd0b376a8854695af0492103534/neo4j-sproc-compiler-1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

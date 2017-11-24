@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.neo4j:neo4j-backup:3.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-backup/3.2.0/79e818d678a65247a03bb568a51cbd2d0d7efa57/neo4j-backup-3.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-backup/3.2.0/f9816d99841c52ec440a870d3ab09299f14d3c7f/neo4j-backup-3.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

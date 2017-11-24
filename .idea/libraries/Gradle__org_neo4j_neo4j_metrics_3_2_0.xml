@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.neo4j:neo4j-metrics:3.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-metrics/3.2.0/7bb4e83a36eaad95449d64ab465501eec1d8b90/neo4j-metrics-3.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-metrics/3.2.0/31ba1b4b2de733ca94d58873f6bf448987ae1e62/neo4j-metrics-3.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

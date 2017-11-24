@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.neo4j:neo4j-security:3.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-security/3.2.0/6c4ac74d1fbe548f93f82bf8be3130769b577cca/neo4j-security-3.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-security/3.2.0/23991ef956368687e149b21cfde837a4921aa851/neo4j-security-3.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

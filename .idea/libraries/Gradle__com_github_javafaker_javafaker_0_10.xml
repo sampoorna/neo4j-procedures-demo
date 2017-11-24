@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.javafaker:javafaker:0.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.javafaker/javafaker/0.10/7eb0c6a68902170e73b343b23fd8549f58efeae3/javafaker-0.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.javafaker/javafaker/0.10/efa920f781c9c01f6a5ac64e48049a46e3cf5a9d/javafaker-0.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
