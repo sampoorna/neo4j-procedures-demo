@@ -29,7 +29,7 @@ public class GetDegree {
         Degree degree = new Degree(label);
         try (ResourceIterator<Node> it = db.findNodes(Label.label(label))) {
             while (it.hasNext()) {
-                degree.add(it.next().getDegree());
+               degree.add(it.next().getDegree());
             }
         }
         return Stream.of(degree);

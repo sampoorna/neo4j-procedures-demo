@@ -1,20 +1,19 @@
 package stats;
 
 import java.util.*;
-import java.util.stream.*;
+
 import org.neo4j.graphdb.*;
 import org.neo4j.kernel.internal.GraphDatabaseAPI;
-import org.neo4j.procedure.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
 import org.neo4j.kernel.impl.proc.Procedures;
 
-public class GraphStatisticsTest {
+public class GetDegreeTest {
     @Test public void testDegree() throws Exception {
 	    GraphDatabaseService db = new TestGraphDatabaseFactory().newImpermanentDatabase();
-	    ((GraphDatabaseAPI)db).getDependencyResolver().resolveDependency(Procedures.class).register(GraphStatistics.class);
+	    ((GraphDatabaseAPI)db).getDependencyResolver().resolveDependency(Procedures.class).register(GetDegree.class);
         // given Alice knowing Bob and Charlie and Dan knowing no-one
         db.execute("CREATE (alice:User)-[:KNOWS]->(bob:User),(alice)-[:KNOWS]->(charlie:User),(dan:User)").close();
 
