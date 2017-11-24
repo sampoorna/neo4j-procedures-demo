@@ -92,5 +92,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: net.biville.florent:neo4j-sproc-compiler:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.parboiled:parboiled-core:1.1.7" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-beanutils:commons-beanutils:1.8.3" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.neo4j:neo4j-kernel:tests:3.2.0" level="project" />
   </component>
 </module>
