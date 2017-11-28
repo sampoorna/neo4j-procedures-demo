@@ -6,7 +6,7 @@ import org.neo4j.graphdb.*;
 import org.neo4j.kernel.internal.GraphDatabaseAPI;
 import org.junit.*;
 import static org.junit.Assert.*;
-import org.neo4j.test.TestGraphDatabaseFactory;
+//import org.neo4j.test.TestGraphDatabaseFactory;
 
 import org.neo4j.kernel.impl.proc.Procedures;
 

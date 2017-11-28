@@ -15,7 +15,7 @@ public class RunQueries implements AutoCloseable{
 
     @Context
     public GraphDatabaseService db;
-    private final Driver driver = GraphDatabase.driver( "bolt://neo4j.eastus2.cloudapp.azure.com", AuthTokens.basic( "neo4j", "password" ) );
+    private final Driver driver = GraphDatabase.driver( "bolt://neo4j.eastus2.cloudapp.azure.com", AuthTokens.basic( "neo4j", "ircHBBOVNPAskRkNb8h5" ) );
 
     public void getItemCount( final int subscriberID)
     {
@@ -35,6 +35,14 @@ public class RunQueries implements AutoCloseable{
     {
         try ( Session session = driver.session() )
         {
+            Node subscriber = session.beginTransaction(tx -> {
+                StatementResult result = tx.run( "MATCH (a:Subscriber{ID:$id})-[:SYNCED_BY]-(i:Item) " +
+                                "RETURN COUNT(DISTINCT(i))",
+                        parameters( "id", subscriberID ) );
+                return Long.toString(result.single().get( 0 ).asLong());
+            });
+            System.out.println( count );
+        }
             Node subscriber = db.getNodeById(subscriberID);
             return subscriber;
         }
