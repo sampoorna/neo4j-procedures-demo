@@ -38,18 +38,15 @@ public class GetDegree {
     }
 
     @Procedure
-    public HashMap<Item, Double> getSimilarItems(Integer itemID, Double commonItemTypeWeight, Double commonTagsWeight) {
+    public HashMap<Item, Double> itemRelevance_CalculateItem(Integer itemID, ArrayList<Integer> candidateItems, Double commonItemTypeWeight, Double commonTagsWeight) {
 
         HashMap<Item, Double> result = new HashMap<>();
 
         // Get the target item
         Item targetItem = new Item(itemID);
 
-        // Get list of candidate items
-        ResourceIterator<Node> candidateItemsIterable = db.findNodes(Label.label("Item"));
-
-        while (candidateItemsIterable.hasNext()) {
-            Item candidateItem = new Item(candidateItemsIterable.next());
+        for (Integer candidateItemID : candidateItems) {
+            Item candidateItem = new Item(candidateItemID);
             result.replace(candidateItem, targetItem.getSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight));
         }
 
@@ -67,7 +64,7 @@ public class GetDegree {
         public int purchaseCount;
         public int viewCount;
 
-        //Constructors
+        // Constructors
         public Item(int ID)
         {
             this.ID = ID;
