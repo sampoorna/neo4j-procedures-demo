@@ -17,110 +17,78 @@ public class ItemRelevance_Calculateitem {
     @Context
     public org.neo4j.graphdb.GraphDatabaseService db;
 
-    @Procedure
-    public HashMap<Item, Double> itemRelevance_CalculateItem(Integer itemID, ArrayList<Integer> candidateItems, Double commonItemTypeWeight, Double commonTagsWeight) {
+        @Procedure
+        public HashMap<Item, Double> ItemRelevance_CalculateItem(Integer itemID, ArrayList<Integer> relatedItemIDs, Double commonItemTypeWeight, Double commonTagsWeight) {
 
-        HashMap<Item, Double> result = new HashMap<>();
+            HashMap<Item, Double> result = new HashMap<>();
 
-        // Get the target item
-        Item targetItem = new Item(itemID);
+            // Get the target item
+            Item targetItem = new Item(itemID);
 
-        for (Integer candidateItemID : candidateItems) {
-            Item candidateItem = new Item(candidateItemID);
-            result.replace(candidateItem, targetItem.getSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight));
-        }
+            for (Integer relatedItemID : relatedItemIDs) {
+                Item candidateItem = new Item(relatedItemID);
+                result.replace(candidateItem, targetItem.GetSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight));
+            }
 
-        return result;
+            return result;
     }
 
     public class Item
     {
         public int ID;
-        public Node subscriber;
-        public Node node;
-        public int itemType;
-        public Set<String> tags;
-        public int addToCartCount;
-        public int purchaseCount;
-        public int viewCount;
+        public Node Node;
+        public int ItemType;
+        public Set<String> Tags;
 
         // Constructors
         public Item(int ID)
         {
             this.ID = ID;
-            this.node = db.findNode(Label.label("Item"), "ID", ID);
+            this.Node = db.findNode(Label.label("Item"), "ID", ID);
         }
 
-        public Item(Node item)
-        {
-            this.node = item;
-            this.ID = Integer.parseInt(item.getProperty("ID").toString());
+        private void SetItemType(){
+            Relationship hasAnRelationship = this.Node.getRelationships(RelationshipType.withName("HAS_AN"), Direction.OUTGOING).iterator().next();
+            Node targetItemType = hasAnRelationship.getOtherNode(this.Node);
+
+            this.ItemType = Integer.parseInt(targetItemType.getProperty("ID").toString());
         }
 
-        private void setItemType(){
-            Relationship hasAnRelationship = this.node.getRelationships(RelationshipType.withName("HAS_AN"), Direction.OUTGOING).iterator().next();
-            Node targetItemType = hasAnRelationship.getOtherNode(this.node);
+        public int GetItemType(){
+            if (ItemType == 0)
+                SetItemType();
 
-            this.itemType = Integer.parseInt(targetItemType.getProperty("ID").toString());
+            return ItemType;
         }
 
-        public int getItemType(){
-            if (itemType == 0)
-                setItemType();
+        private void SetTags(){
+            Iterable<Relationship> taggedRelationships = this.Node.getRelationships(RelationshipType.withName("TAGGED"), Direction.OUTGOING);
 
-            return itemType;
+            Stream<Relationship> relationshipStream = StreamSupport.stream(taggedRelationships.spliterator(), false);
+            this.Tags = relationshipStream.map(r -> r.getEndNode().getProperty("Label").toString()).collect(Collectors.toSet());
         }
 
-        private void setSubscriber(){
-            Relationship hasAnRelationship = this.node.getRelationships(RelationshipType.withName("SYNCED_BY"), Direction.OUTGOING).iterator().next();
-            subscriber = hasAnRelationship.getOtherNode(this.node);
+        public Set<String> GetTags() {
+
+            if (Tags == null)
+                SetTags();
+
+            return Tags;
         }
 
-        public Node getSubscriber(){
-            if (subscriber == null)
-                setSubscriber();
-
-            return subscriber;
+        public int GetTagCount(){
+            return Tags.size();
         }
 
-        private void setTags(){
-            Iterable<Relationship> taggedRelationships = this.node.getRelationships(RelationshipType.withName("TAGGED"), Direction.OUTGOING);
-
-            Stream<Relationship> relsStream = StreamSupport.stream(taggedRelationships.spliterator(), false);
-            this.tags = relsStream.map(r -> r.getEndNode().getProperty("Label").toString()).collect(Collectors.toSet());
-        }
-
-        public Set<String> getTags() {
-
-            if (tags == null)
-                setTags();
-
-            return tags;
-        }
-
-        public int getTagCount(){
-            return tags.size();
-        }
-
-        public boolean hasTag(String tag){
-            if (tags == null)
-                setTags();
-
-            if (tags.contains(tag))
-                return true;
-
-            return false;
-        }
-
-        public Double getSimilarityScore(Item relatedItem, Double commonItemTypeWeight, Double commonTagsWeight){
+        public Double GetSimilarityScore(Item relatedItem, Double commonItemTypeWeight, Double commonTagsWeight){
             double score = 0.0;
 
-            if (this.getItemType() == relatedItem.getItemType())
+            if (this.ItemType == relatedItem.GetItemType())
                 score += commonItemTypeWeight;
 
-            Set commonTags = new HashSet<String>(this.getTags());
-            commonTags.retainAll(relatedItem.getTags());
-            score += (commonTags.size() * commonTagsWeight)/(this.getTagCount() + relatedItem.getTagCount());
+            Set commonTags = new HashSet<String>(this.GetTags());
+            commonTags.retainAll(relatedItem.GetTags());
+            score += (commonTags.size() * commonTagsWeight)/(this.GetTagCount() + relatedItem.GetTagCount());
 
             return score/(commonItemTypeWeight + commonTagsWeight);
         }

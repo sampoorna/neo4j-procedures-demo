@@ -31,11 +31,11 @@ public class RunQueries implements AutoCloseable{
         }
     }
 
-    public Node getSubscriber( final int subscriberID)
+/*    public Node getSubscriber( final int subscriberID)
     {
         try ( Session session = driver.session() )
         {
-            Node subscriber = session.beginTransaction(tx -> {
+            Node Subscriber = session.beginTransaction(tx -> {
                 StatementResult result = tx.run( "MATCH (a:Subscriber{ID:$id})-[:SYNCED_BY]-(i:Item) " +
                                 "RETURN COUNT(DISTINCT(i))",
                         parameters( "id", subscriberID ) );
@@ -43,10 +43,10 @@ public class RunQueries implements AutoCloseable{
             });
             System.out.println( count );
         }
-            Node subscriber = db.getNodeById(subscriberID);
-            return subscriber;
+            Node Subscriber = db.getNodeById(subscriberID);
+            return Subscriber;
         }
-    }
+    }*/
 
     @Override
     public void close() throws Exception
@@ -59,8 +59,8 @@ public class RunQueries implements AutoCloseable{
         try ( RunQueries result = new RunQueries())
         {
             result.getItemCount( 1337 );
-            Node subscriber = result.getSubscriber(1337);
-            System.out.println( subscriber.getDegree(Direction.OUTGOING ));
+            //Node Subscriber = result.getSubscriber(1337);
+            //System.out.println( Subscriber.getDegree(Direction.OUTGOING ));
         }
     }
 }

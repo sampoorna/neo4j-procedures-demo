@@ -32,6 +32,7 @@ dependencies {
     testCompile group: 'org.neo4j', name: 'neo4j-io', version:neo4jVersion
     compileOnly(group: 'org.neo4j', name: 'neo4j', version:neo4jVersion)
     compileOnly(group: 'org.neo4j', name: 'neo4j-enterprise', version:neo4jVersion)
+    testCompile group: 'org.neo4j.test', name: 'neo4j-harness', version:neo4jVersion
 
     compileOnly(group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version:'1.9.7')
     testCompile(group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version:'1.9.7')
