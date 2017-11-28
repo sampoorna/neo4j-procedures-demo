@@ -4,7 +4,6 @@ import org.neo4j.graphdb.*;
 import org.neo4j.procedure.Context;
 import org.neo4j.procedure.Name;
 import org.neo4j.procedure.Procedure;
-import org.neo4j.shell.Output;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,18 +25,18 @@ public class ItemRelevance_CalculateItem {
 
         for (Long relatedItemID : relatedItemIDs) {
             Item candidateItem = new Item(relatedItemID);
-            result.add(new Output(candidateItem, targetItem.GetSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight)));
+            result.add(new Output(candidateItem.GetNode(), targetItem.GetSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight)));
         }
 
         return result.stream();
     }
 
     public class Output{
-        public Item relatedItem;
+        public Node relatedItem;
         public Double score;
 
         // Constructors
-        public Output(Item item, Double score) {
+        public Output(Node item, Double score) {
             this.relatedItem = item;
             this.score = score;
         }
@@ -69,6 +68,10 @@ public class ItemRelevance_CalculateItem {
             return itemType;
         }
 
+        public Node GetNode(){
+            return node;
+        }
+
         private void SetTags() {
             Iterable<Relationship> taggedRelationships = this.node.getRelationships(RelationshipType.withName("TAGGED"), Direction.OUTGOING);
 
@@ -85,19 +88,28 @@ public class ItemRelevance_CalculateItem {
         }
 
         public int GetTagCount() {
+            if (tags == null)
+                SetTags();
+
             return tags.size();
         }
 
         public Double GetSimilarityScore(Item relatedItem, Double commonItemTypeWeight, Double commonTagsWeight) {
             double score = 0.0;
 
+            if (itemType == 0)
+                SetItemType();
+
+            if (tags == null)
+                SetTags();
+
             if (this.itemType == relatedItem.GetItemType())
-                score += commonItemTypeWeight;
+                score += 100 * commonItemTypeWeight;
 
             Set commonTags = new HashSet<String>(this.tags);
             commonTags.retainAll(relatedItem.GetTags());
-            score += (commonTags.size() * commonTagsWeight) / (this.GetTagCount() + relatedItem.GetTagCount());
-
+            score += (200 * commonTags.size() * commonTagsWeight) / (this.GetTagCount() + relatedItem.GetTagCount());
+            //System.out.println(score / (commonItemTypeWeight + commonTagsWeight));
             return score / (commonItemTypeWeight + commonTagsWeight);
         }
     }
