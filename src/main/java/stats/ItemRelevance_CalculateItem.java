@@ -4,11 +4,9 @@ import org.neo4j.graphdb.*;
 import org.neo4j.procedure.Context;
 import org.neo4j.procedure.Name;
 import org.neo4j.procedure.Procedure;
+import org.neo4j.shell.Output;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -19,19 +17,30 @@ public class ItemRelevance_CalculateItem {
     public org.neo4j.graphdb.GraphDatabaseService db;
 
     @Procedure
-    public HashMap<Item, Double> itemRelevanceCalculateItem(@Name("ID") Long itemID, ArrayList<Long> relatedItemIDs, Double commonItemTypeWeight, Double commonTagsWeight) {
+    public Stream<Output> itemRelevanceCalculateItem(@Name("ID") Long itemID, @Name("Related Items List") List<Long> relatedItemIDs, @Name("Item Type Weight") Double commonItemTypeWeight, @Name("Common Tags Weight") Double commonTagsWeight) {
 
-        HashMap<Item, Double> result = new HashMap<>();
+        ArrayList<Output> result = new ArrayList<>();
 
         // Get the target item
         Item targetItem = new Item(itemID);
 
         for (Long relatedItemID : relatedItemIDs) {
             Item candidateItem = new Item(relatedItemID);
-            result.replace(candidateItem, targetItem.GetSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight));
+            result.add(new Output(candidateItem, targetItem.GetSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight)));
         }
 
-        return result;
+        return result.stream();
+    }
+
+    public class Output{
+        public Item relatedItem;
+        public Double score;
+
+        // Constructors
+        public Output(Item item, Double score) {
+            this.relatedItem = item;
+            this.score = score;
+        }
     }
 
     public class Item {

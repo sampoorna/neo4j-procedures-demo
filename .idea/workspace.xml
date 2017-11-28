@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de1c260b-b337-4252-9910-b39b9f63def1" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/stats/ItemRelevance_Calculateitem.java" afterPath="$PROJECT_DIR$/src/main/java/stats/ItemRelevance_CalculateItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/stats/ItemRelevanceTest.java" afterPath="$PROJECT_DIR$/src/test/java/stats/ItemRelevanceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/stats/ItemRelevance_CalculateItem.java" afterPath="$PROJECT_DIR$/src/main/java/stats/ItemRelevance_CalculateItem.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,15 +63,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemRelevance_CalculateItem.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ItemRelevance_CalculateItem.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/stats/ItemRelevance_CalculateItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+            <state relative-caret-position="442">
+              <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2481#2482#0" expanded="true" />
-                <element signature="e#2523#2524#0" expanded="true" />
+                <element signature="e#2762#2763#0" expanded="true" />
+                <element signature="e#2804#2805#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemRelevanceTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ItemRelevanceTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/stats/ItemRelevanceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+            <state relative-caret-position="507">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -634,6 +633,15 @@
     <history-entry file="ItemRelevanceTest - 2017.11.28 at 11h 03m 47s.xml">
       <configuration name="ItemRelevanceTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ItemRelevanceTest - 2017.11.28 at 11h 07m 23s.xml">
+      <configuration name="ItemRelevanceTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ItemRelevanceTest - 2017.11.28 at 11h 09m 01s.xml">
+      <configuration name="ItemRelevanceTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ItemRelevanceTest - 2017.11.28 at 11h 09m 59s.xml">
+      <configuration name="ItemRelevanceTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -644,7 +652,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22409824" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3085188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -843,24 +851,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stats/ItemRelevance_CalculateItem.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/stats/ItemRelevanceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        <state relative-caret-position="507">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2481#2482#0" expanded="true" />
-            <element signature="e#2523#2524#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/stats/ItemRelevanceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/stats/ItemRelevance_CalculateItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+        <state relative-caret-position="442">
+          <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2762#2763#0" expanded="true" />
+            <element signature="e#2804#2805#0" expanded="true" />
           </folding>
         </state>
       </provider>
