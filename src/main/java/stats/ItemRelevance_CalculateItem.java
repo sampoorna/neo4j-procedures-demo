@@ -25,7 +25,7 @@ public class ItemRelevance_CalculateItem {
 
         for (Long relatedItemID : relatedItemIDs) {
             Item candidateItem = new Item(relatedItemID);
-            result.add(new Output(candidateItem.GetNode(), targetItem.GetSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight)));
+            result.add(new Output(candidateItem.GetNode(), targetItem.getSimilarityScore(candidateItem, commonItemTypeWeight, commonTagsWeight)));
         }
 
         return result.stream();
@@ -36,7 +36,7 @@ public class ItemRelevance_CalculateItem {
         public Double score;
 
         // Constructors
-        public Output(Node item, Double score) {
+        Output(Node item, Double score) {
             this.relatedItem = item;
             this.score = score;
         }
@@ -49,66 +49,66 @@ public class ItemRelevance_CalculateItem {
         private Set<String> tags;
 
         // Constructors
-        public Item(Long ID) {
+        Item(Long ID) {
             this.ID = ID;
             this.node = db.findNode(Label.label("Item"), "ID", ID);
         }
 
-        private void SetItemType() {
+        private void setItemType() {
             Relationship hasAnRelationship = this.node.getRelationships(RelationshipType.withName("HAS_AN"), Direction.OUTGOING).iterator().next();
             Node targetItemType = hasAnRelationship.getOtherNode(this.node);
 
             this.itemType = Integer.parseInt(targetItemType.getProperty("ID").toString());
         }
 
-        public int GetItemType() {
+        public int getItemType() {
             if (itemType == 0)
-                SetItemType();
+                setItemType();
 
             return itemType;
         }
 
-        public Node GetNode(){
+        public Node getNode(){
             return node;
         }
 
-        private void SetTags() {
+        private void setTags() {
             Iterable<Relationship> taggedRelationships = this.node.getRelationships(RelationshipType.withName("TAGGED"), Direction.OUTGOING);
 
             Stream<Relationship> relationshipStream = StreamSupport.stream(taggedRelationships.spliterator(), false);
             this.tags = relationshipStream.map(r -> r.getEndNode().getProperty("Label").toString()).collect(Collectors.toSet());
         }
 
-        public Set<String> GetTags() {
+        public Set<String> getTags() {
 
             if (tags == null)
-                SetTags();
+                setTags();
 
             return tags;
         }
 
-        public int GetTagCount() {
+        public int getTagCount() {
             if (tags == null)
-                SetTags();
+                setTags();
 
             return tags.size();
         }
 
-        public Double GetSimilarityScore(Item relatedItem, Double commonItemTypeWeight, Double commonTagsWeight) {
+        public Double getSimilarityScore(Item relatedItem, Double commonItemTypeWeight, Double commonTagsWeight) {
             double score = 0.0;
 
             if (itemType == 0)
-                SetItemType();
+                setItemType();
 
             if (tags == null)
-                SetTags();
+                setTags();
 
-            if (this.itemType == relatedItem.GetItemType())
+            if (this.itemType == relatedItem.getItemType())
                 score += 100 * commonItemTypeWeight;
 
             Set commonTags = new HashSet<String>(this.tags);
-            commonTags.retainAll(relatedItem.GetTags());
-            score += (200 * commonTags.size() * commonTagsWeight) / (this.GetTagCount() + relatedItem.GetTagCount());
+            commonTags.retainAll(relatedItem.getTags());
+            score += (200 * commonTags.size() * commonTagsWeight) / (this.tags.size() + relatedItem.getTagCount());
             //System.out.println(score / (commonItemTypeWeight + commonTagsWeight));
             return score / (commonItemTypeWeight + commonTagsWeight);
         }
